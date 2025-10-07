@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\section*{Solution}
+
+Given:
+
+
+\[
+f(\mathbf{x}) = \sigma\big(2x_1^2 - (2x_2^3 + x_3)\big) + \frac{1}{2}
+\quad \text{where} \quad \sigma(x) = \frac{1}{1 + e^{-x}}
+\]
+
+
+
+Let $\mathbf{x} = (1, 0.5, -1)$
+
+\subsection*{Step 1: Evaluate $f(\mathbf{x})$}
+
+Compute the inner expression:
+
+
+\[
+z = 2x_1^2 - (2x_2^3 + x_3) = 2(1)^2 - (2(0.5)^3 + (-1)) = 2 - (2(0.125) - 1) = 2 - (0.25 - 1) = 2 - (-0.75) = 2.75
+\]
+
+
+
+Apply sigmoid:
+
+
+\[
+\sigma(2.75) = \frac{1}{1 + e^{-2.75}} \approx \frac{1}{1 + 0.063} \approx 0.940
+\]
+
+
+
+Add 0.5:
+
+
+\[
+f(\mathbf{x}) \approx 0.940 + 0.5 = 1.440
+\]
+
+
+
+\subsection*{Step 2: Compute Gradient $\nabla_{\mathbf{x}} f(\mathbf{x})$}
+
+Let $z = 2x_1^2 - (2x_2^3 + x_3)$
+
+Then:
+
+
+\[
+f(\mathbf{x}) = \sigma(z) + \frac{1}{2}
+\quad \Rightarrow \quad \nabla f = \sigma'(z) \cdot \nabla z
+\]
+
+
+
+Where:
+
+
+\[
+\sigma'(z) = \sigma(z)(1 - \sigma(z)) \approx 0.940(1 - 0.940) = 0.940 \cdot 0.060 = 0.0564
+\]
+
+
+
+Now compute partial derivatives of $z$:
+
+
+\[
+\frac{\partial z}{\partial x_1} = 4x_1 = 4(1) = 4
+\quad
+\frac{\partial z}{\partial x_2} = -6x_2^2 = -6(0.5)^2 = -6(0.25) = -1.5
+\quad
+\frac{\partial z}{\partial x_3} = -1
+\]
+
+
+
+Gradient:
+
+
+\[
+\nabla f(\mathbf{x}) = 0.0564 \cdot (4, -1.5, -1) = (0.2256, -0.0846, -0.0564)
+\]
+
+
+
+\subsection*{Final Answers}
+
+\begin{enumerate}
+    \item $f(\mathbf{x}) \approx 1.440$
+    \item $\nabla_{\mathbf{x}} f(\mathbf{x}) \approx (0.2256, -0.0846, -0.0564)$
+\end{enumerate}
+
+\end{document}
